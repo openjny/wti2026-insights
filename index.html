@@ -21,7 +21,7 @@
     padding: 48px 24px;
     line-height: 1.7;
   }
-  .container { max-width: 920px; margin: 0 auto; }
+  .container { max-width: 960px; margin: 0 auto; }
   header { border-bottom: 2px solid var(--ink); padding-bottom: 24px; margin-bottom: 40px; }
   .eyebrow {
     font-size: 12px;
@@ -32,14 +32,12 @@
   }
   h1 { font-size: 28px; margin: 8px 0 4px; font-weight: 700; }
   .subtitle { color: var(--muted); font-size: 14px; }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
-
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
   .card {
     background: #fff;
     border: 1px solid var(--border);
@@ -56,34 +54,55 @@
     margin-bottom: 8px;
   }
   .title { font-size: 17px; font-weight: 700; margin: 0 0 16px; }
-  .stats {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-    padding: 12px 14px;
+  .stat-block {
     background: var(--accent-soft);
     border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
   }
-  .stat { flex: 1; min-width: 80px; }
+  .context-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .stat-row:last-child { margin-bottom: 0; }
   .stat-num {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--accent);
     line-height: 1.2;
+    flex-shrink: 0;
+    min-width: 64px;
   }
-  .stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .stat-text {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .compare {
+    color: var(--muted);
+    font-size: 12px;
+    display: block;
+    margin-top: 2px;
+  }
   .insight {
     font-size: 14px;
     color: var(--ink);
-    margin-top: auto;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
   }
   .insight::before {
     content: "→ ";
     color: var(--accent);
     font-weight: 700;
   }
-
   .actions {
     margin-top: 40px;
     background: var(--ink);
@@ -97,23 +116,19 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
-  @media (max-width: 700px) { .action-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 760px) { .action-grid { grid-template-columns: repeat(2, 1fr); } }
   .action {
     border-left: 2px solid var(--accent);
     padding-left: 12px;
   }
-  .action-verb {
-    font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
+  .action-verb { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
   .action-desc { font-size: 12px; color: #c8c8c8; line-height: 1.5; }
-
   footer {
     margin-top: 32px;
     font-size: 11px;
     color: var(--muted);
     text-align: center;
+    line-height: 1.6;
   }
 </style>
 </head>
@@ -131,20 +146,22 @@
     <div class="card">
       <div class="num">01</div>
       <h2 class="title">「使え」と言うより、自分が使う姿を見せる</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">+30pt</div><div class="stat-label">部下のAI信頼度</div></div>
-        <div class="stat"><div class="stat-num">+22pt</div><div class="stat-label">批判的思考</div></div>
-        <div class="stat"><div class="stat-num">1.4×</div><div class="stat-label">日常利用率</div></div>
+      <div class="stat-block">
+        <div class="context-label">マネージャーがAIを率先使用するチームでは、部下の指標が上昇</div>
+        <div class="stat-row"><div class="stat-num">+30pt</div><div class="stat-text">部下が「AIに任せても大丈夫」と感じる度合い</div></div>
+        <div class="stat-row"><div class="stat-num">+22pt</div><div class="stat-text">部下が「AI出力を吟味する」度合い</div></div>
+        <div class="stat-row"><div class="stat-num">1.4×</div><div class="stat-text">部下がAIを日常的に使う割合（失敗を責めない雰囲気がある場合）</div></div>
       </div>
-      <p class="insight">1on1や画面共有で自分の使い方をそのまま見せるのが最も効く</p>
+      <p class="insight">1on1や画面共有で、自分の使い方をそのまま見せるのが最も効く</p>
     </div>
 
     <div class="card">
       <div class="num">02</div>
       <h2 class="title">詰まっている優秀層を見つけて引き上げる</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">10%</div><div class="stat-label">スキルは高いが組織が追いつかない人</div></div>
-        <div class="stat"><div class="stat-num">19%</div><div class="stat-label">両方そろい成果が出ている人</div></div>
+      <div class="stat-block">
+        <div class="context-label">AI利用者を「個人スキル × 組織サポート」で分類</div>
+        <div class="stat-row"><div class="stat-num">10%</div><div class="stat-text">スキルは高いのに、組織が追いつかず活かせていない人</div></div>
+        <div class="stat-row"><div class="stat-num">19%</div><div class="stat-text">両方そろい、相乗効果で成果が出ている人</div></div>
       </div>
       <p class="insight">勝手に工夫している人を早く見つけ、評価し、チーム標準に変える</p>
     </div>
@@ -152,10 +169,11 @@
     <div class="card">
       <div class="num">03</div>
       <h2 class="title">試行そのものを評価対象にする</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">65%</div><div class="stat-label">適応できないと不安</div></div>
-        <div class="stat"><div class="stat-num">45%</div><div class="stat-label">既存目標の方が安全</div></div>
-        <div class="stat"><div class="stat-num">13%</div><div class="stat-label">試行が評価されると感じる</div></div>
+      <div class="stat-block">
+        <div class="context-label">AI利用者の本音（同一人物の中で矛盾している）</div>
+        <div class="stat-row"><div class="stat-num">65%</div><div class="stat-text">「AIで適応しないと取り残される」と不安に感じる</div></div>
+        <div class="stat-row"><div class="stat-num">45%</div><div class="stat-text">「既存目標の達成に集中する方が安全」と感じる</div></div>
+        <div class="stat-row"><div class="stat-num">13%</div><div class="stat-text">「結果が出なくても、業務再設計の試みが評価される」と感じる</div></div>
       </div>
       <p class="insight">「うまくいかなくても、試したこと自体を評価する」と明言する</p>
     </div>
@@ -163,9 +181,10 @@
     <div class="card">
       <div class="num">04</div>
       <h2 class="title">「使う前に考える」を習慣化する</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">53%</div><div class="stat-label">上位層が役割を事前判断</div></div>
-        <div class="stat"><div class="stat-num">86%</div><div class="stat-label">AI出力を出発点扱い</div></div>
+      <div class="stat-block">
+        <div class="context-label">AIを使いこなす上位層に共通する習慣</div>
+        <div class="stat-row"><div class="stat-num">53%</div><div class="stat-text">着手前に「AIに任せるか／自分でやるか」を意図的に判断する<span class="compare">その他の利用者: 33%</span></div></div>
+        <div class="stat-row"><div class="stat-num">86%</div><div class="stat-text">AIの答えを最終回答ではなく「出発点」として扱う（AI利用者全体）</div></div>
       </div>
       <p class="insight">「AIに任せる／自分でやる／併用」を着手前に口に出させる</p>
     </div>
@@ -173,9 +192,11 @@
     <div class="card">
       <div class="num">05</div>
       <h2 class="title">学びを共有する文化を育む</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">61%</div><div class="stat-label">コツ・失敗の共有<br><span style="color:#999">他36%</span></div></div>
-        <div class="stat"><div class="stat-num">54%</div><div class="stat-label">品質基準を議論<br><span style="color:#999">他29%</span></div></div>
+      <div class="stat-block">
+        <div class="context-label">うまく回っているチームの行動 vs その他のチーム</div>
+        <div class="stat-row"><div class="stat-num">61%</div><div class="stat-text">AIのコツや失敗をメンバー同士で共有している<span class="compare">その他のチーム: 36%</span></div></div>
+        <div class="stat-row"><div class="stat-num">54%</div><div class="stat-text">AI業務の品質基準をチームで議論している<span class="compare">その他のチーム: 29%</span></div></div>
+        <div class="stat-row"><div class="stat-num">26%</div><div class="stat-text">ワークフローを文書化し再現可能にしている<span class="compare">その他のチーム: 19%</span></div></div>
       </div>
       <p class="insight">週次共有枠・品質基準1枚・再現可能な手順集の3点セット</p>
     </div>
@@ -183,10 +204,11 @@
     <div class="card">
       <div class="num">06</div>
       <h2 class="title">スキルが錆びない設計をする</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">43%</div><div class="stat-label">あえてAIを使わない時間を持つ</div></div>
-        <div class="stat"><div class="stat-num">50%</div><div class="stat-label">品質チェック力が重要</div></div>
-        <div class="stat"><div class="stat-num">46%</div><div class="stat-label">批判的思考が重要</div></div>
+      <div class="stat-block">
+        <div class="context-label">AI時代に重要視されている人間スキル</div>
+        <div class="stat-row"><div class="stat-num">43%</div><div class="stat-text">上位層が「自分のスキル維持のため、あえてAIを使わない時間を作っている」<span class="compare">その他の利用者: 30%</span></div></div>
+        <div class="stat-row"><div class="stat-num">50%</div><div class="stat-text">「AI出力の品質チェック力」が今後重要な人間スキルだと回答</div></div>
+        <div class="stat-row"><div class="stat-num">46%</div><div class="stat-text">「批判的思考（情報を客観的に判断する力）」が重要だと回答</div></div>
       </div>
       <p class="insight">判断力を鍛える非AI業務を意図的に残す</p>
     </div>
@@ -194,10 +216,11 @@
     <div class="card">
       <div class="num">07</div>
       <h2 class="title">採用より環境設計に投資する</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">67%</div><div class="stat-label">組織要因の説明力</div></div>
-        <div class="stat"><div class="stat-num">32%</div><div class="stat-label">個人要因の説明力</div></div>
-        <div class="stat"><div class="stat-num">2.5×</div><div class="stat-label">文化の影響力</div></div>
+      <div class="stat-block">
+        <div class="context-label">AIが業務にもたらす効果は何で説明できるか（分析対象19,854人）</div>
+        <div class="stat-row"><div class="stat-num">67%</div><div class="stat-text">組織側の要因（文化・マネージャー支援・人材育成）で説明される</div></div>
+        <div class="stat-row"><div class="stat-num">32%</div><div class="stat-text">個人側の要因（本人のスキル・姿勢）で説明される</div></div>
+        <div class="stat-row"><div class="stat-num">2.5×</div><div class="stat-text">「組織のAI文化」は、個人要因のトップ項目より影響力が大きい</div></div>
       </div>
       <p class="insight">マネージャーが作る環境こそが成果を決める</p>
     </div>
@@ -205,11 +228,12 @@
     <div class="card">
       <div class="num">08</div>
       <h2 class="title">大量実行時代のレビュー責任を先に決める</h2>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">15×</div><div class="stat-label">エージェント利用数（前年比）</div></div>
-        <div class="stat"><div class="stat-num">18×</div><div class="stat-label">大企業での伸び</div></div>
+      <div class="stat-block">
+        <div class="context-label">業務を自動実行するAI（エージェント）の利用拡大</div>
+        <div class="stat-row"><div class="stat-num">15×</div><div class="stat-text">Microsoft 365全体でのエージェント利用数（前年比）</div></div>
+        <div class="stat-row"><div class="stat-num">18×</div><div class="stat-text">大企業に絞った場合の伸び（前年比）</div></div>
       </div>
-      <p class="insight">「誰がレビュー／誰が更新権限／成功をどう広めるか」を今決める</p>
+      <p class="insight">「誰がレビュー／誰が更新権限／成功をどう広めるか」を今のうちに決める</p>
     </div>
 
   </div>
@@ -217,27 +241,16 @@
   <div class="actions">
     <h2>最優先アクション</h2>
     <div class="action-grid">
-      <div class="action">
-        <div class="action-verb">見せる</div>
-        <div class="action-desc">自分のAI利用を可視化する</div>
-      </div>
-      <div class="action">
-        <div class="action-verb">評価する</div>
-        <div class="action-desc">試したこと自体を評価軸に入れる</div>
-      </div>
-      <div class="action">
-        <div class="action-verb">共有する</div>
-        <div class="action-desc">学びと失敗が流通する場を作る</div>
-      </div>
-      <div class="action">
-        <div class="action-verb">守る</div>
-        <div class="action-desc">判断力を鍛える非AI業務を残す</div>
-      </div>
+      <div class="action"><div class="action-verb">見せる</div><div class="action-desc">自分のAI利用を可視化する</div></div>
+      <div class="action"><div class="action-verb">評価する</div><div class="action-desc">試したこと自体を評価軸に入れる</div></div>
+      <div class="action"><div class="action-verb">共有する</div><div class="action-desc">学びと失敗が流通する場を作る</div></div>
+      <div class="action"><div class="action-verb">守る</div><div class="action-desc">判断力を鍛える非AI業務を残す</div></div>
     </div>
   </div>
 
   <footer>
-    Source: Microsoft Work Trend Index 2026 (n=20,000) / People Science調査 (n=1,800)
+    Source: Microsoft Work Trend Index 2026 Global Survey (n=20,000, 10カ国)<br>
+    Microsoft People Science Agentic Teaming &amp; Trust Survey (n=1,800)
   </footer>
 
 </div>
